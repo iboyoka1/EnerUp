@@ -113,7 +113,11 @@ export default function AdminDashboard() {
             <p className="text-sm text-slate-500">Latest Lead</p>
             <p className="text-lg font-bold text-amber-700">
               {leads.length > 0
-                ? new Date(leads[leads.length - 1].createdAt).toLocaleDateString()
+                ? new Date(
+                    leads.reduce((latest, l) =>
+                      l.createdAt > latest.createdAt ? l : latest
+                    ).createdAt
+                  ).toLocaleDateString()
                 : '—'}
             </p>
           </div>

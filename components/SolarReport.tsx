@@ -1,4 +1,5 @@
 import { Sun, Zap, Maximize2, Leaf } from 'lucide-react'
+import { FALLBACK_KWH_PER_PANEL_PER_YEAR } from '@/lib/solarConstants'
 
 interface SolarPotential {
   maxArrayPanelsCount: number
@@ -15,7 +16,7 @@ interface SolarReportProps {
 export default function SolarReport({ data }: SolarReportProps) {
   const totalYearlyEnergy = data.solarPanels
     ? data.solarPanels.reduce((sum, p) => sum + p.yearlyEnergyDcKwh, 0)
-    : data.maxArrayPanelsCount * 400 // fallback: ~400 kWh/panel/year (typical 400W panel at Tunisia's irradiance)
+    : data.maxArrayPanelsCount * FALLBACK_KWH_PER_PANEL_PER_YEAR
 
   const stats = [
     {
