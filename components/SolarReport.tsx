@@ -15,7 +15,7 @@ interface SolarReportProps {
 export default function SolarReport({ data }: SolarReportProps) {
   const totalYearlyEnergy = data.solarPanels
     ? data.solarPanels.reduce((sum, p) => sum + p.yearlyEnergyDcKwh, 0)
-    : data.maxArrayPanelsCount * 400
+    : data.maxArrayPanelsCount * 400 // fallback: ~400 kWh/panel/year (typical 400W panel at Tunisia's irradiance)
 
   const stats = [
     {

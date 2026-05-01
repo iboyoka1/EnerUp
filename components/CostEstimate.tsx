@@ -22,7 +22,7 @@ export default function CostEstimate({ solarData }: CostEstimateProps) {
 
   const yearlyEnergyKwh = solarData.solarPanels
     ? solarData.solarPanels.slice(0, numPanels).reduce((s, p) => s + p.yearlyEnergyDcKwh, 0)
-    : numPanels * 400
+    : numPanels * 400 // fallback: ~400 kWh/panel/year (typical 400W panel at Tunisia's irradiance)
 
   const grossCost = numPanels * costPerPanel
   const incentiveAmount = (grossCost * incentivePercent) / 100
